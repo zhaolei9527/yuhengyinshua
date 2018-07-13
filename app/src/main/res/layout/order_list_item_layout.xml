@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y42"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/x5">
+
+        <TextView
+            android:id="@+id/tv_orderid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="订单号：201805247489"
+            android:textColor="@color/text333"
+            android:textSize="@dimen/x15" />
+
+        <ImageView
+            android:id="@+id/img_ischeck"
+            android:layout_width="@dimen/x16"
+            android:layout_height="@dimen/x16"
+            android:background="@mipmap/ischeck" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/bgddd"></View>
+
+
+</LinearLayout>

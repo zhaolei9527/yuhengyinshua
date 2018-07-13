@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x42"
+        android:background="@color/bgtitle"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@mipmap/fanhui" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="确认订单"
+            android:textColor="@color/bgfff"
+            android:textSize="@dimen/x16" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:background="@mipmap/biankuang" />
+
+        <RelativeLayout
+            android:id="@+id/rl_change_dizhi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_dizhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@mipmap/dizhi" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x6"
+                android:layout_marginTop="@dimen/x8"
+                android:layout_toRightOf="@id/img_dizhi"
+                android:textColor="#535353" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/x6"
+                android:layout_marginRight="@dimen/x32"
+                android:layout_marginTop="@dimen/x8"
+                android:textColor="#535353" />
+
+            <TextView
+                android:id="@+id/tv_dizhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginBottom="@dimen/x6"
+                android:layout_marginLeft="@dimen/x6"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_marginTop="@dimen/x8"
+                android:layout_toRightOf="@id/img_dizhi"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#666"
+                android:textSize="@dimen/x11" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:layout_below="@id/rl_change_dizhi"
+            android:background="@mipmap/biankuang" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.sakura.yuhengyinshua.View.WenguoyiRecycleView
+            android:id="@+id/rv_shop_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"></com.sakura.yuhengyinshua.View.WenguoyiRecycleView>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_qiangzhi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/textred"
+            android:text="强制打印"
+            android:textColor="@color/bgfff" />
+
+        <Button
+            android:id="@+id/btn_queren"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/bgtitle"
+            android:text="确认打印"
+            android:textColor="@color/bgfff" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
