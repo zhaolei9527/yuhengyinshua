@@ -64,7 +64,7 @@
         android:layout_height="@dimen/y33"
         android:layout_below="@id/rl"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y21"
+        android:layout_marginTop="@dimen/y11"
         android:background="@drawable/bg_etcontent_left_bg">
 
         <FrameLayout
@@ -105,7 +105,7 @@
         android:layout_height="@dimen/y33"
         android:layout_below="@id/rl2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y21"
+        android:layout_marginTop="@dimen/y11"
         android:background="@drawable/bg_etcontent_left_bg">
 
         <FrameLayout
@@ -140,13 +140,67 @@
             android:textColorHint="#fff" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl4"
+        android:layout_width="@dimen/x264"
+        android:layout_height="@dimen/y33"
+        android:layout_below="@id/rl3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y11"
+        android:background="@drawable/bg_etcontent_left_bg">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_etcontent_right_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="单号"
+                android:textColor="#fff"
+                android:textSize="@dimen/x13" />
+
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y33"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x48"
+            android:layout_toRightOf="@id/fl_phone"
+            android:background="@null"
+            android:maxLength="18"
+            android:maxLines="1"
+            android:textColor="#fff"
+            android:textColorHint="#fff" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_check"
+        android:layout_width="@dimen/x262"
+        android:layout_height="@dimen/y33"
+        android:layout_below="@id/rl4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y11"
+        android:background="@drawable/bg_login"
+        android:text="查询订单"
+        android:textAllCaps="false"
+        android:textColor="#3296FA"
+        android:textSize="@dimen/x15"
+        android:visibility="visible" />
+
+
     <Button
         android:id="@+id/btn_login"
         android:layout_width="@dimen/x262"
         android:layout_height="@dimen/y33"
-        android:layout_below="@id/rl3"
+        android:layout_below="@id/btn_check"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y30"
+        android:layout_marginTop="@dimen/y10"
         android:background="@drawable/bg_login"
         android:text="开始扫码"
         android:textAllCaps="false"

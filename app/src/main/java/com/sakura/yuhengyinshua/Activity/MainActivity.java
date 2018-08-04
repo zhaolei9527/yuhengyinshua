@@ -3,11 +3,14 @@ package com.sakura.yuhengyinshua.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -49,6 +52,20 @@ public class MainActivity extends BaseActivity {
     EditText etPhone;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.img)
+    ImageView img;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
+    @BindView(R.id.rl2)
+    RelativeLayout rl2;
+    @BindView(R.id.rl3)
+    RelativeLayout rl3;
+    @BindView(R.id.et_num)
+    EditText etNum;
+    @BindView(R.id.rl4)
+    RelativeLayout rl4;
+    @BindView(R.id.btn_check)
+    Button btnCheck;
     private Dialog dialog;
 
     @Override
@@ -76,6 +93,18 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startScan();
+            }
+        });
+
+
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!TextUtils.isEmpty(etNum.getText().toString().trim())) {
+                    isBuda(etNum.getText().toString().trim());
+                } else {
+                    Toast.makeText(context, "请输入订单号", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

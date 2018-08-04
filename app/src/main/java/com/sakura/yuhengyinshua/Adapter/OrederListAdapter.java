@@ -51,7 +51,7 @@ public class OrederListAdapter extends RecyclerView.Adapter<OrederListAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if (datas.get(position).getIs_sao() == 0) {
+        if (datas.get(position).getIs_sao().equals("0")) {
             holder.imgIscheck.setVisibility(View.GONE);
         } else {
             holder.imgIscheck.setVisibility(View.VISIBLE);

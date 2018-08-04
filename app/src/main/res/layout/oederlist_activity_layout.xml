@@ -109,6 +109,15 @@
             android:layout_below="@id/rl_change_dizhi"
             android:background="@mipmap/biankuang" />
 
+        <TextView
+            android:id="@+id/tv_bianhao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/x5"
+            android:text="分区编号："
+            android:textColor="@color/text000"
+            android:textSize="@dimen/x15" />
 
     </LinearLayout>
 

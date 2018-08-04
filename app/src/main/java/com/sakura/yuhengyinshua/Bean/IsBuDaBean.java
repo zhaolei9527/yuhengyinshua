@@ -13,15 +13,17 @@ public class IsBuDaBean {
 
     /**
      * msg : 请求成功
-     * info : [{"is_sao":1,"orderid":"201805247489"}]
+     * info : [{"orderid":"201807301026_1","is_sao":"1"},{"orderid":"201807301026_2","is_sao":"1"},{"orderid":"201807301026_3","is_sao":"0"},{"orderid":"201807301026_4","is_sao":"0"},{"orderid":"201807301026_5","is_sao":"0"},{"orderid":"201807301026_6","is_sao":"1"},{"orderid":"201807301026_7","is_sao":"0"}]
      * status : 1
-     * address : 河南省 郑州市 金水区 经三路金城国际B座906室
+     * hj_bianhao : 1
+     * address : 浙江省 杭州市 桐庐县 城南街道瑶琳路396号 311500
      * tel : 18838260871
-     * name : 七七
+     * name : 测试
      */
 
     private String msg;
     private int status;
+    private String hj_bianhao;
     private String address;
     private String tel;
     private String name;
@@ -41,6 +43,14 @@ public class IsBuDaBean {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getHj_bianhao() {
+        return hj_bianhao;
+    }
+
+    public void setHj_bianhao(String hj_bianhao) {
+        this.hj_bianhao = hj_bianhao;
     }
 
     public String getAddress() {
@@ -77,20 +87,12 @@ public class IsBuDaBean {
 
     public static class InfoBean {
         /**
+         * orderid : 201807301026_1
          * is_sao : 1
-         * orderid : 201805247489
          */
 
-        private int is_sao;
         private String orderid;
-
-        public int getIs_sao() {
-            return is_sao;
-        }
-
-        public void setIs_sao(int is_sao) {
-            this.is_sao = is_sao;
-        }
+        private String is_sao;
 
         public String getOrderid() {
             return orderid;
@@ -98,6 +100,14 @@ public class IsBuDaBean {
 
         public void setOrderid(String orderid) {
             this.orderid = orderid;
+        }
+
+        public String getIs_sao() {
+            return is_sao;
+        }
+
+        public void setIs_sao(String is_sao) {
+            this.is_sao = is_sao;
         }
     }
 }

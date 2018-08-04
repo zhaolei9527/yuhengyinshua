@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,13 +71,15 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
     Button btnQiangzhi;
     @BindView(R.id.btn_queren)
     Button btnQueren;
+    @BindView(R.id.tv_bianhao)
+    TextView tvBianhao;
     private OrederListAdapter adapter;
     private Dialog dialog;
+    private IsBuDaBean isBuDaBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 
@@ -118,11 +121,18 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
             tvDizhi.setText(isBuDaBean.getAddress());
             tvName.setText(isBuDaBean.getName());
             tvPhone.setText(isBuDaBean.getTel());
+
+            if (TextUtils.isEmpty(isBuDaBean.getHj_bianhao())) {
+                tvBianhao.setVisibility(View.GONE);
+            } else {
+                tvBianhao.setText("分区编号：" + isBuDaBean.getHj_bianhao());
+            }
+
             adapter = new OrederListAdapter(OderActivity.this, isBuDaBean.getInfo());
             rvShopList.setAdapter(adapter);
 
             for (int i = 0; i < adapter.getDatas().size(); i++) {
-                if (0 == adapter.getDatas().get(i).getIs_sao()) {
+                if ("0".equals(adapter.getDatas().get(i).getIs_sao())) {
                     new CommomDialog(context, R.style.dialog, "继续扫描", new CommomDialog.OnCloseListener() {
                         @Override
                         public void onClick(Dialog dialog, final boolean confirm) {
@@ -149,7 +159,7 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn_queren:
                 for (int i = 0; i < adapter.getDatas().size(); i++) {
-                    if (0 == adapter.getDatas().get(i).getIs_sao()) {
+                    if ("0".equals(adapter.getDatas().get(i).getIs_sao())) {
                         new CommomDialog(context, R.style.dialog, "请确认全部订单后进行打印！", new CommomDialog.OnCloseListener() {
                             @Override
                             public void onClick(Dialog dialog, final boolean confirm) {
@@ -161,7 +171,7 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
                             }
                         }).setTitle("提示").show();
                         return;
-                    } else if (3 == adapter.getDatas().get(i).getIs_sao()) {
+                    } else if ("3".equals(adapter.getDatas().get(i).getIs_sao())) {
                         new CommomDialog(context, R.style.dialog, "请待上次打印完成！", new CommomDialog.OnCloseListener() {
                             @Override
                             public void onClick(Dialog dialog, final boolean confirm) {
@@ -173,7 +183,7 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
                             }
                         }).setTitle("提示").show();
                         return;
-                    } else if (4 == adapter.getDatas().get(i).getIs_sao()) {
+                    } else if ("4".equals(adapter.getDatas().get(i).getIs_sao())) {
                         new CommomDialog(context, R.style.dialog, "确认进行补打！", new CommomDialog.OnCloseListener() {
                             @Override
                             public void onClick(Dialog dialog, final boolean confirm) {
@@ -205,7 +215,6 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
                 break;
             default:
                 break;
-
         }
     }
 
@@ -213,15 +222,24 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
      * 订单获取
      */
     private void order(String type) {
+
         if (!Utils.isConnected(context)) {
             EasyToast.showShort(context, R.string.Networkexception);
             return;
         }
+
         dialog.show();
         HashMap<String, String> params = new HashMap<>(1);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         params.put("orderid", adapter.getDatas().get(0).getOrderid());
         params.put("type", type);
+
+        if (TextUtils.isEmpty(isBuDaBean.getHj_bianhao())) {
+            params.put("hj_bianhao", "0");
+        } else {
+            params.put("hj_bianhao", isBuDaBean.getHj_bianhao());
+        }
+
         Log.e("MainActivity", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "api/order", "api/order", params, new VolleyInterface(context) {
             @Override
@@ -303,10 +321,15 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
                 try {
                     dialog.dismiss();
                     Log.e("MainActivity", result);
-                    IsBuDaBean isBuDaBean = new Gson().fromJson(result, IsBuDaBean.class);
+                    isBuDaBean = new Gson().fromJson(result, IsBuDaBean.class);
                     if (1 == isBuDaBean.getStatus()) {
                         adapter = new OrederListAdapter(OderActivity.this, isBuDaBean.getInfo());
                         rvShopList.setAdapter(adapter);
+                        if (TextUtils.isEmpty(isBuDaBean.getHj_bianhao())) {
+                            tvBianhao.setVisibility(View.GONE);
+                        } else {
+                            tvBianhao.setText("分区编号：" + isBuDaBean.getHj_bianhao());
+                        }
                     } else {
                         Toast.makeText(context, isBuDaBean.getMsg(), Toast.LENGTH_SHORT).show();
                     }
@@ -314,7 +337,6 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
                     e.printStackTrace();
                     Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -324,6 +346,4 @@ public class OderActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
-
-
 }
